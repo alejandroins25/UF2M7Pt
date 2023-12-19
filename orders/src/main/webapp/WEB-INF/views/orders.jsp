@@ -14,7 +14,11 @@
 	<div class="container">
 		<jsp:include page="sections/header.jsp" />
 		<%-- TODO if user has ROLE_ADMIN -> Show all orders of all users and let change state and delivery date --%>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+        </sec:authorize>
 		<%-- TODO if user has ROLE_USER -> Show all orders of the user --%>
+		<sec:authorize access="hasRole('ROLE_USER')">
+        </sec:authorize>
 	</div>
 </body>
 </html>

@@ -32,6 +32,9 @@ public class OrderController {
 	}
 
 	public ModelAndView orders() {
+		// Authentication authentication =
+		// SecurityContextHolder.getContext().getAuthentication();
+		// String username = authentication.getName();
 		// TODO - get authenticated user here
 		// TODO - get user orders
 		// TODO - Prepare the orders.jsp view and send user orders and Order.STATES as
