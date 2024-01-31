@@ -1,9 +1,20 @@
 package cat.institutmarianao.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 public class Item {
+	@NotBlank(message = "La referencia no puede estar en blanco")
 	public String reference;
+
+	@NotBlank(message = "El nombre no puede estar en blanco")
 	public String name;
+
 	public String description;
+
+	@NotNull(message = "El precio no puede ser nulo")
+	@PositiveOrZero(message = "El precio debe ser positivo o cero")
 	public Double price;
 	public String image;
 

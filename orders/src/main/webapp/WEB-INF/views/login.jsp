@@ -1,5 +1,4 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
@@ -9,23 +8,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="sections/head.jsp" />
+	<jsp:include page="sections/head.jsp" />
 </head>
 <body>
 	<div class="container">
 		<jsp:include page="sections/header.jsp" />
 		<%-- TODO Login form here --%>
 
-		<form action="<c:url value= "/login"/>" method="post">
-	
-			<h5 class="card-title">Please, enter your credentials</h5>
-			<c:if test="${not empty error}">
-				<span>The given credentials are wrong</span>
-				<button type="button" data-bs-dismiss="alert"></button>
-			</c:if>
-			<input placeholder="Username" name="username" type="text">
-			<input placeholder="Password" name="password" type="password">
-			<input type="submit" value="Login">
+		<form action="/orders/login" method="post">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<spring:message code="login.give.credentials"/>
+							</h4>
+						</div>
+
+						<div class="panel-body">
+							
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user"></i></span> <input class="form-control"
+									placeholder='<spring:message code="login.username"/>' name='username'
+									type="text">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input class="form-control"
+									placeholder="<spring:message code="login.password"/>" name='password'
+									type="password">
+							</div>
+						</div>
+						<div class="panel-footer">
+							<input class="btn btn-default btn-block" type="submit"
+								value="<spring:message code="login.login"/>">
+						</div>
+					</div>
+				</div>
+			</div>
 		</form>
 	</div>
 </body>

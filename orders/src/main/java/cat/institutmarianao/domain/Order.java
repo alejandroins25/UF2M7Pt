@@ -4,20 +4,43 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Order {
 	public static final String[] STATES = { "order.state.pending", "order.state.transit", "order.state.delivery",
 			"order.state.absent", "order.state.pending.collection", "order.state.returned" };
 
 	private static int referenceSequence = 1;
 
+	@NotNull
 	private Integer reference;
+
+	@NotNull
 	private User client;
+
+	@NotNull
 	private Address deliveryAddress = new Address();
+
+	@NotNull
+	@Size(min = 1, message = "Debe haber al menos un ítem en la orden")
 	private Map<Item, Integer> items = new HashMap<>();
+
+	@NotNull
 	private Date startDate;
+
+	@Future
 	private Date deliveryDate;
+
+	@Min(value = 0, message = "El estado debe ser como mínimo 0")
 	private Integer state = 0;
+
+	@Min(value = 0, message = "La cantidad total debe ser como mínimo 0")
 	private Integer totalQuantity = 0;
+
+	@Min(value = 0, message = "El monto total debe ser como mínimo 0")
 	private Double totalAmount = 0d;
 
 	public static int incReferenceSequence() {

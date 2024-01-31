@@ -4,10 +4,14 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/security 
+            http://www.springframework.org/schema/security/spring-security.xsd
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<!-- Configuration to find Spring elements (Controllers, Services, Repositories) -->
 	<mvc:annotation-driven />
@@ -18,21 +22,14 @@
 		<!-- Configure security context -->
 		<security:csrf disabled="true" />
 
-		<security:intercept-url pattern="/login"
-			access="permitAll" />
-		<security:intercept-url pattern="/users/**"
-			access="hasRole('USER_ROLE')" />
-		<security:intercept-url pattern="/admin/**"
-			access="hasRole('ADMIN_ROLE')" />
-		<security:intercept-url pattern="/**"
-			access="isAuthenticated()" />
+		<security:intercept-url pattern="/login" access="permitAll" method="GET"/>
+		<security:intercept-url pattern="/users/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/**" access="isAuthenticated()" />
 
-		<security:form-login login-page="/login"
-			authentication-failure-url="/loginfailed" />
-		<security:logout logout-success-url="/logout"
-			invalidate-session="true" />
-		<security:access-denied-handler
-			error-page="/login" />
+		<security:form-login login-page="/login" authentication-failure-url="/loginfailed" />
+		<security:logout logout-success-url="/" invalidate-session="true" />
+		<security:access-denied-handler error-page="/login" />
 	</security:http>
 
 	<security:authentication-manager>
